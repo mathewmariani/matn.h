@@ -2,7 +2,6 @@
 
 // C/C++
 #include <math.h>
-
 #include "matn.h"
 
 template <typename T>
@@ -38,23 +37,44 @@ public:
 		return ret;
 	}
 
+	static inline mat4 rotate(float angle, int x, int y, int z) {
+		const float rad = (angle * 0.0174533f);
+		const float c = std::cosf(rad);
+		const float s = std::sinf(rad);
+		const float ux = (x * x);
+		const float uy = (y * y);
+		const float uz = (z * z);
+
+		mat4 ret = mat4::identity();
+		ret[0][0] = (c + ux * (1 - c));
+		ret[0][1] = ((y * x) * (1 - c) + z * s);
+		ret[0][2] = ((z * x) * (1 - c) - y * s);
+		ret[1][0] = ((x * y) * (1 - c) - z * s);
+		ret[1][1] = (c + uy * (1 - c));
+		ret[1][2] = ((z * y) * (1 - c) + x * s);
+		ret[2][0] = ((x * z) * (1 - c) + y * s);
+		ret[2][1] = ((y * z) * (1 - c) - x * s);
+		ret[2][2] = (c + uz * (1 - c));
+		return ret;
+	}
+
 	static inline mat4 rotateX(float angle) {
-		float rad = angle * 0.0174533f;
-		float c = cosf(rad);
-		float s = sinf(rad);
+		const float rad = angle * 0.0174533f;
+		const float c = cosf(rad);
+		const float s = sinf(rad);
 
 		mat4 ret = mat4::identity();
 		ret[1][1] = (c);
 		ret[1][2] = (s);
 		ret[2][1] = (-s);
-		ret[2][2] = (s);
+		ret[2][2] = (c);
 		return ret;
 	}
 
 	static inline mat4 rotateY(float angle) {
-		float rad = angle * 0.0174533f;
-		float c = cosf(rad);
-		float s = sinf(rad);
+		const float rad = angle * 0.0174533f;
+		const float c = cosf(rad);
+		const float s = sinf(rad);
 
 		mat4 ret = mat4::identity();
 		ret[0][0] = (c);
@@ -65,9 +85,9 @@ public:
 	}
 
 	static inline mat4 rotateZ(float angle) {
-		float rad = angle * 0.0174533f;
-		float c = cosf(rad);
-		float s = sinf(rad);
+		const float rad = angle * 0.0174533f;
+		const float c = cosf(rad);
+		const float s = sinf(rad);
 
 		mat4 ret = mat4::identity();
 		ret[0][0] = (c);
