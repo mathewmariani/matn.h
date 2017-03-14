@@ -97,6 +97,19 @@ public:
 		return ret;
 	}
 
+	static inline mat4 perspective(float fovy, float aspect, float near, float far) {
+		mat4 ret = mat4::identity();
+		float scale = (1.0f / std::tanf(fovy / 2.0f);
+		float ratio = (scale / aspect);
+		ret[0][0] = (ratio);
+		ret[1][1] = (scale);
+		ret[2][2] = (-(far) / (far - near));
+		ret[2][3] = (-1.0f));
+		ret[3][2] = (-(far * near) / (far - near));
+		ret[3][3] = (0.0f);
+		return ret;
+	};
+
 	static inline mat4 ortho(float left, float right, float bottom, float top, float near, float far) {
 		mat4 ret = mat4::identity();
 		ret[0][0] = (2.0f / (right - left));
