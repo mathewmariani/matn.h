@@ -9,6 +9,11 @@ inline matn<T, length>::matn(const matn<T, length>& m) {
 }
 
 template <typename T, const int length>
+inline matn<T, length>::operator T* () {
+	return &data[0][0];
+}
+
+template <typename T, const int length>
 inline matn<T, length>::operator const T* () const {
 	return &data[0][0];
 }

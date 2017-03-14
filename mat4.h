@@ -97,11 +97,11 @@ public:
 		return ret;
 	}
 
-	static inline mat4 ortho(float left, float right, float bottom, float top, float far, float near) {
-		mat4 ret;
+	static inline mat4 ortho(float left, float right, float bottom, float top, float near, float far) {
+		mat4 ret = mat4::identity();
 		ret[0][0] = (2.0f / (right - left));
 		ret[1][1] = (2.0f / (top - bottom));
-		ret[2][2] = (-1.0);
+		ret[2][2] = (-2.0f / (far - near));
 		ret[3][0] = (-(right + left) / (right - left));
 		ret[3][1] = (-(top + bottom) / (top - bottom));
 		ret[3][2] = (-(far + near) / (far - near));
