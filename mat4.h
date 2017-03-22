@@ -66,7 +66,7 @@ public:
 		return ret;
 	}
 
-	static inline mat4 rotate(float angle, int x, int y, int z) {
+	static inline mat4 rotate(T angle, T x, T y, T z) {
 		const float rad = (angle * 0.0174533f);
 		const float c = std::cosf(rad);
 		const float s = std::sinf(rad);
@@ -87,7 +87,7 @@ public:
 		return ret;
 	}
 
-	static inline mat4 rotateX(float angle) {
+	static inline mat4 rotateX(T angle) {
 		const float rad = angle * 0.0174533f;
 		const float c = cosf(rad);
 		const float s = sinf(rad);
@@ -100,7 +100,7 @@ public:
 		return ret;
 	}
 
-	static inline mat4 rotateY(float angle) {
+	static inline mat4 rotateY(T angle) {
 		const float rad = angle * 0.0174533f;
 		const float c = cosf(rad);
 		const float s = sinf(rad);
@@ -113,7 +113,7 @@ public:
 		return ret;
 	}
 
-	static inline mat4 rotateZ(float angle) {
+	static inline mat4 rotateZ(T angle) {
 		const float rad = angle * 0.0174533f;
 		const float c = cosf(rad);
 		const float s = sinf(rad);
@@ -126,7 +126,7 @@ public:
 		return ret;
 	}
 
-	static inline mat4 perspective(float fovy, float aspect, float near, float far) {
+	static inline mat4 perspective(T fovy, T aspect, T near, T far) {
 		mat4 ret = mat4::identity();
 		float scale = (1.0f / std::tanf(fovy / 2.0f);
 		float ratio = (scale / aspect);
@@ -139,7 +139,7 @@ public:
 		return ret;
 	};
 
-	static inline mat4 ortho(float left, float right, float bottom, float top, float near, float far) {
+	static inline mat4 ortho(T left, T right, T bottom, T top, T near, T far) {
 		mat4 ret = mat4::identity();
 		ret[0][0] = (2.0f / (right - left));
 		ret[1][1] = (2.0f / (top - bottom));
