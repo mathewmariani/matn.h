@@ -37,20 +37,15 @@ inline matn<T, length>& matn<T, length>::operator = (const matn<T, length>& m) {
 template <typename T, const int length>
 matn<T, length> matn<T, length>::operator * (const  matn<T, length>& m) const {
 	matn<T, length> ret;
-
 	for (auto i = 0; i < length; ++i) {
 		for (auto j = 0; j < length; ++j) {
-
 			T sum{ 0 };
-
 			for (auto k = 0; k < length; ++k) {
 				sum += data[k][j] * m.data[i][k];
 			}
-
-			ret[i][j] = 0;
+			ret[i][j] = sum;
 		}
 	}
-
 	return ret;
 }
 
