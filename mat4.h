@@ -13,6 +13,35 @@ public:
 
 // static functions
 public:
+	static inline mat4 transform(T x, T y, T z, T angle, T rx, T ry, T rz, T sx, T sy, T sz) {
+		mat4 ret = mat4::identity();
+
+		const float rad = (angle * 0.0174533f);
+		const float c = std::cosf(rad);
+		const float s = std::sinf(rad);
+		const float ux = (rx * rx);
+		const float uy = (ry * ry);
+		const float uz = (rz * rz);
+
+		ret[0][0] = sx * (c + ux * (1 - c));
+		ret[0][1] = sy * ((y * x) * (1 - c) + z * s);
+		ret[0][2] = sz * ((z * x) * (1 - c) - y * s);
+
+		ret[1][0] = sx * ((x * y) * (1 - c) - z * s);
+		ret[1][1] = sy * (c + uy * (1 - c));
+		ret[1][2] = sz * ((z * y) * (1 - c) + x * s);
+
+		ret[2][0] = sx * ((x * z) * (1 - c) + y * s);
+		ret[2][1] = sy * ((y * z) * (1 - c) - x * s);;
+		ret[2][2] = sz * (c + uz * (1 - c));
+
+		ret[3][0] = x * ret[0][0] + y * ret[1][0] + z * ret[2][0];
+		ret[3][1] = x * ret[0][1] + y * ret[1][1] + z * ret[2][1];
+		ret[3][2] = x * ret[0][2] + y * ret[1][2] + z * ret[2][2];
+
+		return ret;
+	}
+
 	static inline mat4 translate(T x, T y, T z) {
 		mat4 ret = mat4::identity();
 		ret[3][0] = x;
