@@ -128,12 +128,12 @@ public:
 
 	static inline mat4 perspective(T fovy, T aspect, T near, T far) {
 		mat4 ret = mat4::identity();
-		float scale = (1.0f / std::tanf(fovy / 2.0f);
+		float scale = (1.0f / std::tanf(fovy / 2.0f));
 		float ratio = (scale / aspect);
 		ret[0][0] = (ratio);
 		ret[1][1] = (scale);
 		ret[2][2] = (-(far) / (far - near));
-		ret[2][3] = (-1.0f));
+		ret[2][3] = (-1.0f);
 		ret[3][2] = (-(far * near) / (far - near));
 		ret[3][3] = (0.0f);
 		return ret;
